@@ -51,11 +51,13 @@ pairs (cost in $/p.u-hr & power-point in p.u-hr), which is modeled same as TwoPa
 ThreePartCost. Code below shows an example of how to build a TimeSeriesData.
 
 ```@repl market_bid_cost
-data =
+    
+data = 
     Dict(Dates.DateTime("2020-01-01") => [
-        [(0.0, 0.05), (290.1, 0.0733), (582.72, 0.0967), (894.1, 0.120)],
-        [(0.0, 0.05), (300.1, 0.0733), (600.72, 0.0967), (900.1, 0.120)],]
+        PiecewiseStepData([1.0, 2.0, 3.0], [4.0, 6.0]),
+        PiecewiseStepData([1.0, 2.0, 6.0], [2.0, 12.0]),]
     )
+
 time_series_data = Deterministic(
     name = "variable_cost",
     data = data,
